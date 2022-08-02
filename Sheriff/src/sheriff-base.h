@@ -3,17 +3,24 @@
 #include <iostream>
 #include <functional>
 
-#define IF_SHF_ERR(ret) if (shf::RetV err = t.test(); err.m_value != err.p_territory->m_noErr)
+//#define IF_SHF_ERR(ret) if (shf::RetV err = t.test(); err.m_value != err.p_territory->m_noErr)
+#define IF_SHF_ERR(ret) if (shf::RetV err = t.test(); err)
 
 namespace shf
 {
 	struct ReturnValue;
-	struct Territory;
+	
+	class Territory
+	{
+	public:
+		Territory(const char* _where, int32_t _noErr = 0)
+			: p_where(_where), m_noErr(_noErr) {}
+
+		const char* p_where;
+		int32_t m_noErr;
+	};
 
 	using RetV = ReturnValue;
-
-	//static void (*PrintErr)(RetV err);
-
 	struct ReturnValue
 	{
 	public:
@@ -26,8 +33,8 @@ namespace shf
 
 		/*void operator () ()
 		{
-			PrintErr(this);
-		}
+			PrintErr(*this);
+		}*/
 
 		operator ReturnValue()
 		{
@@ -37,28 +44,32 @@ namespace shf
 		operator ReturnValue*()
 		{
 			return this;
-		}*/
+		}
 
-		//operator const char*() const
-		//{
-		//	return p_territory->p_where;
-		//}
+		operator const char*() const
+		{
+			return p_territory->p_where;
+		}
 
-		//operator int() const
-		//{
-		//	return m_value;
-		//}
-	};
+		operator int() const
+		{
+			return m_value;
+		}
 
+		operator int()
+		{
+			return m_value;
+		}
 
-	class Territory
-	{
-	public:
-		Territory(const char* _where, int32_t _noErr = 0)
-			: p_where(_where), m_noErr(_noErr) {}
+		operator bool()
+		{
+			return m_value != p_territory->m_noErr;
+		}
 
-		const char* p_where;
-		int32_t m_noErr;
+		operator bool() const
+		{
+			return m_value != p_territory->m_noErr;
+		}
 	};
 
 	static std::function<void(RetV)> PrintErr = [](RetV err) -> void {
