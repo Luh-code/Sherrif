@@ -46,7 +46,7 @@ IF_SHF_ERR(t.test())
 		return -1;
 	}
 ```
-IF_SHF_ERR() is a macro definition which expands to ```if (shf::RetV err = t.test(); err)```, allowing for a block afterwards, and providing access to the error for handling.
+IF_SHF_ERR() is a macro definition which expands to ´if (shf::RetV err = t.test(); err)´, allowing for a block afterwards, and providing access to the error for handling.
 
 ## The Full example program
 ```
