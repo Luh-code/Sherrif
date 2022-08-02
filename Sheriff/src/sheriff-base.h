@@ -4,7 +4,7 @@
 #include <functional>
 
 //#define IF_SHF_ERR(ret) if (shf::RetV err = t.test(); err.m_value != err.p_territory->m_noErr)
-#define IF_SHF_ERR(ret) if (shf::RetV err = t.test(); err)
+#define IF_SHF_ERR(ret) if (shf::RetV err = t.test(); !err)
 
 namespace shf
 {
@@ -63,12 +63,12 @@ namespace shf
 
 		operator bool()
 		{
-			return m_value != p_territory->m_noErr;
+			return m_value == p_territory->m_noErr;
 		}
 
 		operator bool() const
 		{
-			return m_value != p_territory->m_noErr;
+			return m_value == p_territory->m_noErr;
 		}
 	};
 
