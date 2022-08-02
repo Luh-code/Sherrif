@@ -88,3 +88,4 @@ int main()
 	return 0;
 } 
 ```
+The shf::Territory in global scope in unneeded here.
