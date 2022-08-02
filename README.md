@@ -8,7 +8,7 @@ The way Sheriff aims to help with debugging, is by giving integer return types m
 Something you were always able to do is to return a member of an enum as an error code.  
 What Sheriff does is make this process more user friendly.
 
-```
+```c++
 class Test
 {
 public:
@@ -38,7 +38,7 @@ The same for the Territory (in this case the p_territory public member). Though 
 A shf::ReturnValue can also be read as a boolean (true if no error occured) via the bool() operator.  
   
 In practice this isn't even required to know though. Because this is how most of you catch your errors:
-```
+```c++
 IF_SHF_ERR(t.test())
 	{
 		shf::PrintErr(err);
@@ -46,10 +46,10 @@ IF_SHF_ERR(t.test())
 		return -1;
 	}
 ```
-IF_SHF_ERR() is a macro definition which expands to ´if (shf::RetV err = t.test(); err)´, allowing for a block afterwards, and providing access to the error for handling.
+IF_SHF_ERR() is a macro definition which expands to `if (shf::RetV err = t.test(); err)`, allowing for a block afterwards, and providing access to the error for handling.
 
 ## The Full example program
-```
+```c++
 #include "sheriff-base.h"
 
 class Test
