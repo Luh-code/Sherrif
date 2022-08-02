@@ -42,7 +42,7 @@ In practice this isn't even required to know though. Because this is how most of
 IF_SHF_ERR(t.test())
 	{
 		shf::PrintErr(err);
-    // do some error handling
+    		// do some error handling
 		return -1;
 	}
 ```
