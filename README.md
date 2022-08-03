@@ -37,7 +37,7 @@ The return code can either be accessed by accessing the public member m_value or
 The same for the Territory (in this case the p_territory public member). Though the class name given to the territory can also be accessed with the const char*() operator.  
 A shf::ReturnValue can also be read as a boolean (true if no error occured) via the bool() operator.  
   
-In practice this isn't even required to know though. Because this is how most of you catch your errors:
+In practice this isn't even required to know though. Because most of the time this is how you deal with errors:
 ```c++
 IF_SHF_ERR(t.test())
 	{
