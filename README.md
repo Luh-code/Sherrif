@@ -46,7 +46,7 @@ IF_SHF_ERR(t.test())
 		return -1;
 	}
 ```
-IF_SHF_ERR() is a macro definition which expands to `if (shf::RetV err = t.test(); !err)`, allowing for a block afterwards, and providing access to the error for handling.  
+IF_SHF_ERR() is a macro definition which expands to `if (shf::RetV err = t.test(); !err)` in this case, allowing for a block afterwards, and providing access to the error for handling.  
   
 Also a last thing to mention is, shf::PrintErr is a std::function, so it can easily be overridden for usage with a logger, or just changing the output formatting.
 
