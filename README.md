@@ -37,7 +37,7 @@ The return code can either be accessed by accessing the public member m_value or
 The same for the Territory (in this case the p_territory public member). Though the class name given to the territory can also be accessed with the const char*() operator.  
 A shf::ReturnValue can also be read as a boolean (true if no error occured) via the bool() operator.  
   
-In practice this isn't even required to know though. Because this is how most of you catch your errors:
+In practice this isn't even required to know though. Because most of the time this is how you deal with errors:
 ```c++
 IF_SHF_ERR(t.test())
 	{
@@ -46,7 +46,7 @@ IF_SHF_ERR(t.test())
 		return -1;
 	}
 ```
-IF_SHF_ERR() is a macro definition which expands to `if (shf::RetV err = t.test(); err)`, allowing for a block afterwards, and providing access to the error for handling.  
+IF_SHF_ERR() is a macro definition which expands to `if (shf::RetV err = t.test(); !err)` in this case, allowing for a block afterwards, and providing access to the error for handling.  
   
 Also a last thing to mention is, shf::PrintErr is a std::function, so it can easily be overridden for usage with a logger, or just changing the output formatting.
 
